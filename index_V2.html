@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NTS Projekt | Industrijska avtomatizacija in ATEX rešitve</title>
+  <meta
+    name="description"
+    content="NTS Projekt - Industrijska avtomatizacija, PLC programiranje, projektiva, frekvenčni pretvorniki in rešitve za eksplozijsko nevarna območja."
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+    margin: 0;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    background: 
+    radial-gradient(circle at 20% 30%, rgba(56,189,248,0.18), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(59,130,246,0.15), transparent 40%),
+    #020820;
+
+  color: #e2e8f0;
+  line-height: 1.5;
+}
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(11, 17, 32, 0.35);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav.top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+    }
+
+    .hero-logo {
+  width: 500px;   /* glavna velikost */
+  height: auto;
+  display: block;
+  margin: 0 auto 20px; /* center + razmak */
+    }
+    
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .logo small {
+      display: block;
+      font-size: 12px;
+      color: #cbd5e1;
+      font-weight: normal;
+      margin-top: 4px;
+    }
+
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .top-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .top-links a {
+      font-size: 18px;
+      color: #e2e8f0;
+      transition: 0.2s;
+    }
+/* BARVA OPISA V HEADER-ju */
+    .top-links a:hover {
+      color: #b4a1a1;
+    }
+
+    .language-select {
+      background: rgba(30, 41, 59, 0.7);
+      color: white;
+      border: 1px solid #334155;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 20px 100px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(29, 2, 24, 0.45), rgba(39, 8, 26, 0.65)),
+        url("Images/Ozadje.jpeg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center bottom, rgba(255, 120, 80, 0.28), transparent 40%),
+        linear-gradient(to top, rgba(255, 120, 80, 0.18), transparent 35%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      line-height: 1;
+      margin: 0 0 18px;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      font-size: 28px;
+      margin: 0 auto 34px;
+      max-width: 880px;
+      color: #f1f5f9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-button {
+      display: inline-block;
+      min-width: 180px;
+      padding: 15px 28px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .hero-button.primary {
+      background: rgba(255,255,255,0.06);
+      color: #ffffff;
+      border: 2px solid rgba(255,255,255,0.85);
+    }
+
+    .hero-button.primary:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-2px);
+    }
+
+    .hero-button.secondary {
+      background: rgba(255,255,255,0.06);
+      color: #ffffff;
+      border: 2px solid rgba(255,255,255,0.85);
+    }
+
+    .hero-button.secondary:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+
+    .section-intro {
+      max-width: 1000px;
+      margin-bottom: 34px;
+    }
+
+/* BARVA NASLOVOV */
+    h2 {
+      font-size: 38px;
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+
+    .section-intro p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 18px;
+    }
+
+    .services,
+    .projects,
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    /* Barva boxov z opisi dela */
+    .card {
+      background: #1e293b;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid #334155;
+      transition: 0.25s ease;
+      overflow: hidden;
+    }
+
+/* Barva prehoda na boxih */
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #ffffff;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      color: #ffffff;
+      font-size: 21px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 15px;
+    }
+
+    .project-img,
+    .service-img {
+     width: 100%;
+     height: 140px;          /* 👈 enaka višina */
+     object-fit: cover;      /* 👈 lep crop */
+     border-radius: 12px;
+     margin-bottom: 15px;
+     transition: transform 0.3s ease;
+    display: block;
+    }
+
+    .project-img {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .card:hover .project-img,
+    .card:hover .service-img {
+      transform: scale(1.03);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 120px);
+      gap: 16px;
+      justify-content: start;
+      margin-top: 40px;
+    }
+/* Velikost box-ov kjer so slike od proizvajalcev opreme */
+    .tech-item {
+      width: 130px;
+      height: 50px;
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #0f172a;
+      transition: 0.2s;
+      overflow: hidden;
+    }
+
+    /*
+    .tech-item:hover {
+      border-color: #38bdf8;
+      transform: translateY(-3px);
+    }*/
+
+    .tech-item img {
+      max-width: 90%;
+      max-height: 100px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .about-box,
+    .contact-box,
+    .cta-box {
+      background: #1e293b;
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid #334155;
+    }
+
+    .about-box p,
+    .contact-box p,
+    .cta-box p {
+      color: #cbd5e1;
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+    }
+
+    /*Barva boxov za opis pri info */
+    .info-item {
+      padding: 14px 16px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .info-item strong {
+      display: block;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-box,
+    .cta-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #e8edf0, #e0e6e9);
+      color: #0f172a;
+      text-decoration: none;
+      padding: 14px 26px;
+      border-radius: 12px;
+      font-weight: bold;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 20px rgba(104, 105, 105, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(227, 232, 235, 0.5);
+      background: linear-gradient(135deg, #eff2f3, #dfe8ec);
+    }
+
+    .button.secondary {
+      background: rgba(30, 41, 59, 0.6);
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      backdrop-filter: blur(6px);
+      box-shadow: none;
+    }
+/*
+    .button.secondary:hover {
+      background: #1e293b;
+      border-color: #f83838;
+    }
+*/
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid #1e293b;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .muted {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .about-wrap,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .hero p {
+        font-size: 19px;
+      }
+
+      .hero-button {
+        min-width: 150px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      nav.top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .top-right {
+        width: 100%;
+      }
+
+      .top-links {
+        gap: 12px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 140px 0 100px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .tech-grid {
+        grid-template-columns: repeat(auto-fit, 110px);
+        gap: 12px;
+      }
+
+      .tech-item {
+        width: 110px;
+        height: 68px;
+      }
+
+      .tech-item img {
+        max-width: 84%;
+        max-height: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav class="top-nav">
+        <div class="logo">
+            <img src="Images/logo.png" alt="NTS Projekt">
+          <!--
+            NTS Projekt
+          <small>Napredne tehnične storitve</small>
+        -->
+        </div>
+    
+
+        <div class="top-right">
+          <div class="top-links">
+            <a href="#domov">Domov</a>
+            <a href="#storitve">Storitve</a>
+            <!--<a href="#področja">Področja</a>-->
+            <a href="#prednosti">Prednosti</a>
+            <a href="#kontakt">Kontakt</a>
+          </div>
+
+          <!--
+          <select id="lang" class="language-select">
+            <option value="sl">Slovenščina</option>
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+          </select>
+        </div>-->
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="domov">
+    <div class="hero-content">
+        <img src="Images/logo.png" alt="NTS Projekt" class="hero-logo">
+      <!--
+        <h1>NTS PROJEKT</h1>
+      <p>Napredne tehnične rešitve za industrijsko avtomatizacijo</p>
+    -->
+      <div class="hero-buttons">
+        <a class="hero-button primary" href="#kontakt">Začni sodelovanje</a>
+        <a class="hero-button secondary" href="#storitve">Več informacij</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="storitve">
+    <div class="container">
+      <div class="section-intro">
+        <h2>Storitve</h2>
+        <p>
+          Pomagam podjetjem pri razvoju in nadgradnji industrijskih sistemov od ideje 
+          do zanesljivega delovanja v praksi. Združujem projektivo, programiranje in 
+          izvedbo, kar omogoča hitrejšo realizacijo, manj napak in bolj usklajene rešitve.
+        </p>
+      </div>
+
+      <div class="services">
+        <div class="card">
+          <img src="Images/TIA_portal.jpg" alt="PLC programiranje" class="service-img">
+          <h3>PLC programiranje</h3>
+          <p>
+            Razvoj in optimizacija PLC programov za zanesljivo in pregledno delovanje industrijskih procesov. 
+            Delo s krmilniki Siemens (S7-1200, S7-1500, TIA Portal) ter integracija z HMI in SCADA sistemi. 
+            Vključuje sekvenčno logiko, alarmiranje in komunikacijo z napravami.
+          </p>
+        </div>
+
+        <div class="card">
+          <img src="Images/Projektiva.jpeg" alt="Projektiva" class="service-img">
+          <h3>Projektiva in tehnične rešitve</h3>
+          <p>
+            Izdelava projektne dokumentacije za industrijske sisteme, 
+            vključno z električnimi shemami, funkcijskimi opisi in zasnovo krmiljenja. 
+            Določanje signalov, logike delovanja in izbira opreme z upoštevanjem 
+            dejanskih obratovalnih pogojev.
+          </p>
+        </div>
+
+        <div class="card">
+          <img src="Images/Nadzor.jpeg" alt="Nadzor" class="service-img">
+          <h3>Nadzor in vodenje projektov</h3>
+          <p>
+            Nadzor in vodenje projektov neposredno na terenu, z aktivnim spremljanjem 
+            poteka del, preverjanjem izvedbe in reševanjem tehničnih izzivov. 
+            Sodelovanje pri zagonu sistemov, preverjanje signalov, komunikacij 
+            in pravilnega delovanja krmiljenja v realnem procesu.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <img src="Images/Ex_zone.png" alt="Eksplozivna območja" class="service-img">
+          <h3>ATEX in eksplozivna nevarna območja</h3>
+          <p>
+            Izbira in preverjanje opreme glede na zahteve ATEX (Ex izvedbe), 
+            pregled skladnosti z veljavnimi standardi ter sodelovanje pri prilagoditvah 
+            obstoječih sistemov. Vključuje tudi preverjanje pravilnosti izvedbe, 
+            ozemljitev, zaščitnih ukrepov ter zagotavljanje varnega obratovanja 
+            v zahtevnih industrijskih okoljih in pripravo dokumentacije za pregled.
+          </p>
+        </div>
+
+        <div class="card">
+          <img src="Images/Cistilna.jpeg" alt="Nadzor in vodenje" class="service-img">
+          <h3>Procesna avtomatizacija</h3>
+          <p>
+            Izvedba procesne avtomatizacije v industrijskih in komunalnih sistemih, 
+            s poudarkom na odpadnih vodah (wastewater), črpališčih in čistilnih napravah. 
+            Integracija instrumentacije (pretok, tlak, nivo, temperatura), 
+            implementacija regulacijskih zank (PID) ter povezovanje naprav 
+            v nadzorni sistem (PLC, HMI, SCADA).            
+          </p>
+        </div>
+
+        <div class="card">
+          <img src="Images/Transport.jpeg" alt="Transport" class="service-img">
+          <h3>Transportne in pakirne linije</h3>
+          <p>
+            Avtomatizacija transportnih in pakirnih linij, vključno z vodenjem transportnih trakov, 
+            sortiranjem, pozicioniranjem in sinhronizacijo naprav v proizvodnem procesu. 
+            Implementacija sekvenčnega vodenja, medsebojnih blokad ter komunikacije med napravami 
+            za nemoteno in učinkovito delovanje linije. Poudarek na optimizaciji pretoka materiala, 
+            zmanjšanju zastojev ter zanesljivem delovanju sistema.           
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!--
+  <section id="projekti">
+    <div class="container">
+      <div class="section-intro">
+        <h2>Področja specializacije</h2>
+        <p>
+          Nekaj tipičnih področij, kjer lahko pomagam pri izvedbi ali nadgradnji sistema.
+        </p>
+      </div>
+
+      <div class="projects">
+        <div class="card">
+          <img src="Images/Test1.jpg" alt="Črpalni sistem" class="project-img">
+          <h3>Avtomatizacija črpalnega sistema</h3>
+          <p>
+            Programiranje delovanja več črpalk, preklapljanje, alarmiranje,
+            medsebojna logika delovanja in optimizacija obratovanja.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Integracija frekvenčnih pretvornikov</h3>
+          <p>
+            Nastavitev pogonov, prilagoditev procesnim zahtevam, zagon sistema
+            in izboljšanje energetske učinkovitosti.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Rešitve za ATEX okolja</h3>
+          <p>
+            Načrtovanje, tehnične prilagoditve in priprava dokumentacije
+            za varno delovanje v eksplozijsko nevarnih območjih.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+-->
+  <section id="prednosti">
+    <div class="container">
+      <div class="section-intro">
+        <h2>Zakaj sodelovati z mano</h2>
+        <p>
+          Poudarek dajem na praktičnih rešitvah, tehnični preglednosti in zanesljivem delovanju sistema.
+        </p>
+      </div>
+
+      <div class="benefits">
+        <div class="card">
+          <h3>Praktičen pristop</h3>
+          <p>
+            Rešitve pripravljam z vidika dejanskega obratovanja sistema. 
+            Poudarek je na pregledni logiki, enostavnem vzdrževanju in stabilnem delovanju, 
+            kar omogoča zanesljivo uporabo ter lažje nadgradnje v prihodnosti.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Celovit inženirski pristop</h3>
+          <p>
+            Povezujem projektivo, programiranje in izvedbo v enoten proces. 
+            S tem se zmanjšajo neskladja med dokumentacijo in izvedbo, 
+            komunikacija je enostavnejša, rezultat pa tehnično bolj usklajen in učinkovit.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Zanesljivost in varnost</h3>
+          <p>
+            Posebno pozornost namenjam stabilnosti delovanja, pravilni implementaciji 
+            krmilne logike ter varnosti sistema, tudi v zahtevnih pogojih 
+            (npr. ATEX okolja). Cilj je dolgoročno zanesljivo in varno obratovanje.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Izkušnje s terena</h3>
+          <p>
+            Aktivno sodelujem pri izvedbi in zagonu sistemov na terenu, 
+            kar omogoča boljše razumevanje dejanskih problemov in hitrejše 
+            reševanje tehničnih izzivov v realnem okolju.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Prilagodljivost in podpora</h3>
+          <p>
+            Rešitve prilagodim konkretnemu procesu in zahtevam naročnika. 
+            Zagotavljam tudi podporo po zagonu sistema ter pomoč pri 
+            optimizaciji in nadgradnjah.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="tehnologije">
+    <div class="container">
+      <div class="section-intro">
+        <h2>Uporabljene tehnologije</h2>
+        <p>
+          Izkušnje z vodilnimi proizvajalci industrijske opreme in avtomatizacije.
+        </p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-item"><img src="Images/Siemens.png" alt="Siemens"></div>
+        <div class="tech-item"><img src="Images/Schneider.png" alt="Schneider Electric"></div>
+        <div class="tech-item"><img src="Images/Eaton.png" alt="Eaton"></div>
+        <div class="tech-item"><img src="Images/Danfoss.png" alt="Danfoss"></div>
+        <div class="tech-item"><img src="Images/Rittal.png" alt="Rittal"></div>
+        <div class="tech-item"><img src="Images/EndressHauser.png" alt="Endress & Hauser"></div>
+        <div class="tech-item"><img src="Images/Hach.png" alt="Hach"></div>
+        <div class="tech-item"><img src="Images/Vega.png" alt="Vega"></div>
+        <div class="tech-item"><img src="Images/PepperlFuchs.png" alt="Pepperl+Fuchs"></div>
+        <div class="tech-item"><img src="Images/FCI.png" alt="FCI"></div>
+        <div class="tech-item"><img src="Images/IFM.png" alt="IFM"></div>
+        <div class="tech-item"><img src="Images/Drager.png" alt="Drager"></div>
+        <div class="tech-item"><img src="Images/Sulzer.png" alt="Sulzer"></div>
+        <div class="tech-item"><img src="Images/Andritz.png" alt="Andritz"></div>
+        <div class="tech-item"><img src="Images/Gea.png" alt="Gea"></div>
+        <div class="tech-item"><img src="Images/Klein.png" alt="Klein"></div>
+        <div class="tech-item"><img src="Images/Kuhn.png" alt="Kuhn"></div>
+        <div class="tech-item"><img src="Images/Huber.png" alt="Huber"></div>
+        <div class="tech-item"><img src="Images/Wam.png" alt="Wam"></div>
+        <div class="tech-item"><img src="Images/Aat.jpeg" alt="Aat"></div>
+        <div class="tech-item"><img src="Images/IET.png" alt="IET"></div>
+        <div class="tech-item"><img src="Images/Viessmann.png" alt="Viessmann"></div>
+        <div class="tech-item"><img src="Images/Wilo.png" alt="Wilo"></div>
+      </div>
+    </div>
+  </section>
+<!--
+  <section id="o-meni">
+    <div class="container">
+      <div class="section-intro">
+        <h2>O meni</h2>
+      </div>
+
+      <div class="about-wrap">
+        <div class="about-box">
+          <p>
+            Ukvarjam se z industrijsko avtomatizacijo, programiranjem PLC sistemov,
+            projektivo, vodenjem in nadzorom projektov ter rešitvami za zahtevna
+            industrijska okolja. Fokus imam na zanesljivosti, pregledni logiki delovanja
+            in kakovostni tehnični izvedbi.
+          </p>
+
+          <p>
+            Pri delu stremim k temu, da so rešitve tehnično smiselne, stabilne
+            in prilagojene dejanskim potrebam procesa ter uporabnika.
+          </p>
+        </div>
+
+        
+        <div class="info-list">
+          <div class="info-item">
+            <strong>Področja</strong>
+            PLC, HMI, SCADA, projektiva, dokumentacija, ATEX, frekvenčni pretvorniki
+          </div>
+          <div class="info-item">
+            <strong>Način dela</strong>
+            Od ideje in dokumentacije do zagona, optimizacije in podpore
+          </div>
+          <div class="info-item">
+            <strong>Lokacija</strong>
+            Slovenija
+          </div>
+          -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="container">
+      <div class="section-intro">
+        <h2>Kontakt</h2>
+        <!--
+        <p>
+          Za povpraševanje, sodelovanje ali tehnično podporo me kontaktirajte.
+        </p>
+        -->
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-box">
+          <p><strong>Ime:</strong> Primož Krajnc</p>
+          <p><strong>Podjetje:</strong> NTS Projekt / Napredno tehnično svetovanje</p>
+          <p><strong>Email:</strong> <a href="mailto:prkrajnc@gmail.com">prkrajnc@gmail.com</a></p>
+          <p><strong>Telefon:</strong> <a href="tel:+38631544333">+386 31 544 333</a></p>
+          <p><strong>Lokacija:</strong> Slovenija</p>
+
+          <div class="contact-links">
+            <a class="button" href="mailto:prkrajnc@gmail.com">Pošlji email</a>
+           <!-- <a class="button secondary" href="tel:+38631544333">Pokliči</a>-->
+          </div>
+        </div>
+
+        <div class="cta-box">
+          <h3>Potrebujete pomoč pri projektu?</h3>
+          <p>
+            Nudim celovito podporo od projektive in PLC programiranja 
+            do izvedbe, zagona in optimizacije sistema. 
+
+            Izkušnje vključujejo procesno avtomatizacijo (odpadne vode, črpališča), 
+            transportne in pakirne linije ter ATEX okolja.
+
+            Sodelujem skozi celoten projekt od ideje do zanesljivega delovanja sistema.
+          </p>
+            Stopite v stik in skupaj poiščemo optimalno rešitev za vaš sistem.
+          </p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2024 Primož Krajnc, s.p. · NTS Projekt · Vse pravice pridržane.
+    </div>
+  </footer>
+
+</body>
+</html>
